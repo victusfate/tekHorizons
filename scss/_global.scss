@@ -1,6 +1,11 @@
 // Global styling for this template
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 54px;
+}
+
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   @include body-font;
 }
 
@@ -10,6 +15,7 @@ p {
 
 a {
   color: $theme-primary;
+  text-decoration: none;
   &.active,
   &:active,
   &:focus,
