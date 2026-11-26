@@ -3,6 +3,7 @@
 
   var nav = document.getElementById("mainNav");
   var menu = document.getElementById("navbarResponsive");
+  var SHRINK_AFTER_PX = 100;
 
   // Close the responsive menu when one of its links is clicked
   menu.addEventListener("click", function (event) {
@@ -13,7 +14,7 @@
 
   // Shrink the navbar once the page is scrolled
   function shrinkNav() {
-    nav.classList.toggle("navbar-shrink", window.scrollY > 100);
+    nav.classList.toggle("navbar-shrink", window.scrollY > SHRINK_AFTER_PX);
   }
   window.addEventListener("scroll", shrinkNav, { passive: true });
   shrinkNav();

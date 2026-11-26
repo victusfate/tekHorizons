@@ -1,0 +1,2 @@
+# Third-party files copied from node_modules by `npm run vendor`
+vendor/
