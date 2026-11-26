@@ -3,3 +3,17 @@
   margin: 15px 0;
   text-transform: none;
 }
+
+// Template showcase card
+.template-card {
+  border: 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  .card-body {
+    padding: 2rem;
+  }
+  ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.75;
+  }
+}

@@ -1,43 +1,26 @@
-(function($) {
-  "use strict"; // Start of use strict
+(function () {
+  "use strict";
 
-  // Smooth scrolling using jQuery easing
-  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-      if (target.length) {
-        $('html, body').animate({
-          scrollTop: (target.offset().top - 54)
-        }, 1000, "easeInOutExpo");
-        return false;
-      }
+  var nav = document.getElementById("mainNav");
+  var menu = document.getElementById("navbarResponsive");
+  var SHRINK_AFTER_PX = 100;
+
+  // Close the responsive menu when one of its links is clicked
+  menu.addEventListener("click", function (event) {
+    if (event.target.closest(".nav-link") && menu.classList.contains("show")) {
+      bootstrap.Collapse.getOrCreateInstance(menu).hide();
     }
   });
 
-  // Closes responsive menu when a scroll trigger link is clicked
-  $('.js-scroll-trigger').click(function() {
-    $('.navbar-collapse').collapse('hide');
+  // Shrink the navbar once the page is scrolled
+  function shrinkNav() {
+    nav.classList.toggle("navbar-shrink", window.scrollY > SHRINK_AFTER_PX);
+  }
+  window.addEventListener("scroll", shrinkNav, { passive: true });
+  shrinkNav();
+
+  // Activate tooltips
+  document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) {
+    new bootstrap.Tooltip(el);
   });
-
-  // Activate scrollspy to add active class to navbar items on scroll
-  $('body').scrollspy({
-    target: '#mainNav',
-    offset: 54
-  });
-
-  // Collapse the navbar when page is scrolled
-  $(window).scroll(function() {
-    if ($("#mainNav").offset().top > 100) {
-      $("#mainNav").addClass("navbar-shrink");
-    } else {
-      $("#mainNav").removeClass("navbar-shrink");
-    }
-  });
-
-  // activate tool tips
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })  
-
-})(jQuery); // End of use strict
+})();
