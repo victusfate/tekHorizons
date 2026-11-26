@@ -600,3 +600,13 @@ ul.social-buttons {
   .btn-xl .badge {
     color: #608bfc;
     background-color: white; }
+
+.template-card {
+  border: 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); }
+  .template-card .card-body {
+    padding: 2rem; }
+  .template-card ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.75; }
