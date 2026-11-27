@@ -1,6 +1,6 @@
 # Tek Horizons
 
-Source for [tekhorizons.com](https://tekhorizons.com), a single static page served by GitHub Pages from the `master` branch, behind Cloudflare.
+Source for [tekhorizons.com](https://tekhorizons.com), a single static page served by GitHub Pages (deployed from `main` by `.github/workflows/pages.yml`, which publishes only an allowlist of site files), behind Cloudflare.
 
 The page started from the [Start Bootstrap Agency](https://startbootstrap.com/theme/agency) theme (MIT) and now runs on Bootstrap 5 and Font Awesome 7, with no jQuery.
 

@@ -1,0 +1,46 @@
+name: Pages
+
+# Deploys only the static site. Everything else in the repo (agent tooling, scripts, docs) stays off
+# tekhorizons.com: a file is published only if it is listed in SITE below.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy site
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - name: Assemble the allowlisted site
+        env:
+          SITE: index.html CNAME css js img favicons vendor
+        run: |
+          set -euo pipefail
+          mkdir _site
+          for path in $SITE; do
+            test -e "$path" || { echo "::error::allowlisted path missing: $path"; exit 1; }
+            cp -R "$path" _site/
+          done
+          touch _site/.nojekyll
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
